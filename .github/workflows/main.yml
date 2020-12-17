@@ -1,6 +1,7 @@
-on:
-  schedule:
-    - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
+# on:
+#   schedule:
+#     - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
+on: [push]
 
 jobs:
   collect-and-send-news:
@@ -8,7 +9,7 @@ jobs:
     name: Collect news and send to my slack
     steps:
       - name: Collect news
-        uses: hirakawamizuki/collect-daily-news-action@v0.1
+        uses: hirakawamizuki/collect-daily-news-action
         id: collect-news
         with: 
           keywords: "GitHub+Container+Registry,Amazon+ECR,Docker+Hub,GitHub+Actions"
