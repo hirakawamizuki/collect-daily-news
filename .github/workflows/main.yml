@@ -1,7 +1,6 @@
 on:
   schedule:
-    # - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
-    - cron: '30 7 * * *'
+    - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
 
 jobs:
   collect-and-send-news:
