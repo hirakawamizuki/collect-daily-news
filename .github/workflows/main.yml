@@ -9,7 +9,7 @@ jobs:
     name: Collect news and send to my slack
     steps:
       - name: Collect news
-        uses: hirakawamizuki/collect-daily-news-action@master
+        uses: hirakawamizuki/collect-daily-news-action@v0.1.1
         id: collect-news
         with: 
           keywords: "GitHub,Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR"
@@ -20,4 +20,4 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: ${{ steps.test.outputs.result }}
+          text: ${{ steps.collect-news.outputs.result }}
