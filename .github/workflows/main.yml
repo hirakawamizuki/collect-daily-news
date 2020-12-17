@@ -1,7 +1,7 @@
-# on:
-#   schedule:
-#     - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
-on: [push]
+on:
+  schedule:
+    # - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
+    - cron: '30 7 * * *'
 
 jobs:
   collect-and-send-news:
@@ -9,15 +9,15 @@ jobs:
     name: Collect news and send to my slack
     steps:
       - name: Collect news
-        uses: hirakawamizuki/collect-daily-news-action@v0.1.1
+        uses: hirakawamizuki/collect-daily-news-action@v0.1.1  # ニュースを収集するための自作アクション
         id: collect-news
         with: 
-          keywords: "GitHub,Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR"
-          how-many-days: "1"
-          output-format: "mrkdwn"
+          keywords: "Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR,CentOS+終了"
+          how-many-days: "1"  # 過去1日分のニュースを収集
+          output-format: "mrkdwn"  # slack mrkdwn形式で出力
       - name: Send to my slack
-        uses: tokorom/action-slack-incoming-webhook@main
+        uses: tokorom/action-slack-incoming-webhook@main  # Marketplaceで見つけたSlack通知用のアクション
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: ${{ steps.collect-news.outputs.result }}
+          text: ${{ steps.collect-news.outputs.result }}  # アクション間でアウトプットを受け渡している
