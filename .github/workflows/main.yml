@@ -9,10 +9,10 @@ jobs:
     name: Collect news and send to my slack
     steps:
       - name: Collect news
-        uses: hirakawamizuki/collect-daily-news-action@master
+        uses: hirakawamizuki/collect-daily-news-action@v0.1.1
         id: collect-news
         with: 
-          keywords: "GitHub+Container+Registry,Amazon+ECR,Docker+Hub,GitHub+Actions"
+          keywords: "GitHub,Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR"
           how-many-days: "1"
           output-format: "mrkdwn"
       - name: Send to my slack
