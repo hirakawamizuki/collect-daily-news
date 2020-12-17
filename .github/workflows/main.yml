@@ -1,0 +1,22 @@
+on:
+  schedule:
+    - cron: '0 2 * * *'  # UTCの2:00（JSTの11:00）に毎日実行する
+
+jobs:
+  collect-and-send-news:
+    runs-on: ubuntu-latest
+    name: Collect news and send to my slack
+    steps:
+      - name: Collect news
+        uses: hirakawamizuki/collect-daily-news-action@v0.1
+        id: collect-news
+        with: 
+          keywords: "GitHub+Container+Registry,Amazon+ECR,Docker+Hub,GitHub+Actions"
+          how-many-days: "1"
+          output-format: "mrkdwn"
+      - name: Send to my slack
+        uses: tokorom/action-slack-incoming-webhook@main
+        env:
+          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          text: ${{ steps.test.outputs.result }}
