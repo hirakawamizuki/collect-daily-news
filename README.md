@@ -28,7 +28,7 @@ on:
 ### ②ニュースの収集：
 
 ```
-uses: hirakawamizuki/collect-daily-news-action@v0.1.1  # ニュースを収集する自作アクション
+uses: hirakawamizuki/collect-daily-news-action@v0.1.2  # ニュースを収集する自作アクション
 id: collect-news
 with:
   keywords: "Docker,GitHub+Container+Registry,Docker+Hub,CentOS+終了"
