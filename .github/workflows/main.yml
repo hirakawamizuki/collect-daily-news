@@ -11,7 +11,7 @@ jobs:
         uses: hirakawamizuki/collect-daily-news-action@v0.1.2  # ニュースを収集するための自作アクション
         id: collect-news
         with: 
-          keywords: "Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR,CentOS+終了"
+          keywords: "Docker,GitHub+Actions,GitHub+Container+Registry,Docker+Hub,Amazon+ECR,CentOS+終了,アジャイル"
           how-many-days: "1"  # 過去1日分のニュースを収集
           output-format: "mrkdwn"  # slack mrkdwn形式で出力
       - name: Send to my slack
